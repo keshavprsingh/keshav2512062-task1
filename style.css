@@ -44,6 +44,34 @@ body {
   position: relative;
 }
 
+/* 1. Increases spacing between hero and content ONLY on the Home/Hub page */
+body.page-home .game-section {
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+
+/* 2. Indents headings slightly away from the left border */
+.section-head,
+.cat-hero-inner {
+  text-align: left;
+  padding-left: 24px;
+}
+
+/* 3. Grid gap and reduced card width */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px; /* Safe gap between cards */
+}
+
+.game-card {
+  max-width: 280px; /* Reduced card width */
+  width: 100%;
+  margin: 0 auto;  /* Centers each card inside its column */
+}
+
+
+
 .container {
   width: 100%;
   max-width: 1180px;
@@ -119,7 +147,7 @@ section { position: relative; z-index: 1; }
   border-bottom: 1px solid var(--border-soft);
 }
 
-.cat-hero-inner { max-width: 760px; }
+.cat-hero-inner { max-width: 760px; padding-left:20px;}
 
 .eyebrow {
   display: inline-flex;
@@ -165,13 +193,14 @@ h1 {
 .section-head h2 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; }
 .section-head p { color: var(--text-muted); font-size: 0.92rem; }
 
-.game-grid {
+ .game-grid {   
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 27px;
 }
 
 .game-card {
+  
   display: flex;
   flex-direction: column;
   background: rgba(14, 17, 27, 0.75);
@@ -281,4 +310,43 @@ h1 {
 
 @media (max-width: 868px) {
   .game-grid, .about-grid, .about-split { grid-template-columns: 1fr; }
+}
+
+/* Full bgvideo in fantasy page*/
+.cat-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 60px;
+  border-bottom: none; 
+}
+
+.hero-vid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  
+  /* Smooth fade of vid */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+.hero-vid video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35; 
+}
+
+.cat-hero-inner {
+  position: relative;
+  z-index: 2; /*layered above bg */
+}
+
+/* Creates a larger bottom gap ONLY on the Homepage hero */
+
+.cat-hero.home-hero {
+  padding-bottom: 120px;
 }
